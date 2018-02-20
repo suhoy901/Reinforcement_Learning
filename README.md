@@ -1,2 +1,9 @@
 # Reinforcement_Learning
-강화학습
+## Keyword
+- Markov Decision Process
+  > MDP
+  > Value Function
+
+## Reinforcement_learning
+- value base
+ > 
