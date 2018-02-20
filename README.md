@@ -20,11 +20,16 @@
  - Value Iteration(Bellman Optimality Equation)
  
 ### 4. Reinforcement(고전적) : Model-Free
-- SARSA : s,a,r,s',a' -> 큐함수 업뎃
+- SARSA : s,a,r,s',a' -> 큐함수 업뎃, 벨만기대방정식
   - evaluation : TD Learning(Bootstrap), 샘플링으로 대체
   - improvement : 엡실론-탐욕정책(강제 최적이 아닌 행동 선택)
   - 문제점 : on-policy(안좋은 보상을 만날경우 큐함수 업데이트가 지속적 감소)
-- Q-Learning : Value Iteration에 sampling적용, 
+- Q-Learning : Value Iteration에 sampling적용, Off-Policy(2개의 정책) -> s,a,r,s'
+  - tip) off-policy : behavior policy(샘플수집정책 : 업데이트X), target policy(에이전트의 정책:업데이트o)
+  - 벨만최적방정식으로 큐함수 업데이트, off-policy(행동하는 정책, 학습하는 정책)
+  - 행동정책의 종류 : 엡실론탐욕, 볼츠만 등..
+  
+  
 
 
  
