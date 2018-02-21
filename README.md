@@ -42,6 +42,7 @@
 ### 4. Reinforcement(고전적) : Model-Free(sampling)
 - Off-policy vs On-policy
 - SARSA : s,a,r,s',a' -> 큐함수 업뎃, 벨만기대방정식
+  - 벨만기대방정식을 변형한 큐함수 업데이트 : ![](http://latex.codecogs.com/gif.latex?q%28s%2C%20a%29%20%3D%20q%28s%2C%20a%29%20&plus;%20%5Calpha%28r%20&plus;%20%5Cgamma%20q%28s%27%2C%20a%27%29%20-%20q%28s%2Ca%29%29)
   - evaluation : TD Learning(Bootstrap), 샘플링으로 대체
   - improvement : 엡실론-탐욕정책(강제 최적이 아닌 행동 선택)
   - 문제점 : on-policy(안좋은 보상을 만날경우 큐함수 업데이트가 지속적 감소)
