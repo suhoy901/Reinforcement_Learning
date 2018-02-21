@@ -3,8 +3,8 @@
 - n-step, episode, sequence
 - deterministic policy vs stochastic policy
 - policy 2가지 형태
-  - 정책(상태) -> 명시적(explicit)
-  - 선택(가치함수(상태)) -> 내재적(implicit)
+  - 정책(상태) -> 명시적(explicit) -> Value Iteration
+  - 선택(가치함수(상태)) -> 내재적(implicit) -> Policy Iteration
 
 ## Keyword
 ### 1. Markov Decision Process
@@ -38,19 +38,23 @@
   - 벨만 기대방정식을 이용함. ![](http://latex.codecogs.com/gif.latex?%5Cnu_%7Bk&plus;1%7D%28s%29%20%5Cleftarrow%20%5CSigma_%7Ba%5Cin%20A%7D%20%5Cpi%28a%7Cs%29%5BR_s%5Ea%20&plus;%20%5Cgamma%20%5Cnu_k%28s%27%29%5D)
   - evaluation : 벨만기대방성식을 이용한 참 가치함수를 계산, 정책 파이에 대한 참 가치함수를 반복적으로, 모든 상태에 대해 동시에(한번)
   - improvement : 가치함수로 정책 파이를 업데이트, greedy policy
+  - SARSA
  
 ### 4. Reinforcement(고전적) : Model-Free(sampling)
 - Off-policy vs On-policy
-- SARSA : s,a,r,s',a' -> 큐함수 업뎃, 벨만기대방정식
-  - 벨만기대방정식을 변형한 큐함수 업데이트 : ![](http://latex.codecogs.com/gif.latex?q%28s%2C%20a%29%20%3D%20q%28s%2C%20a%29%20&plus;%20%5Calpha%28r%20&plus;%20%5Cgamma%20q%28s%27%2C%20a%27%29%20-%20q%28s%2Ca%29%29)
+- **SARSA** : s,a,r,s',a' -> 큐함수 업뎃, 벨만기대방정식
+  - 벨만기대방정식을 변형한 큐함수 업데이트
+    - ![](http://latex.codecogs.com/gif.latex?q%28s%2C%20a%29%20%3D%20q%28s%2C%20a%29%20&plus;%20%5Calpha%28r%20&plus;%20%5Cgamma%20q%28s%27%2C%20a%27%29%20-%20q%28s%2Ca%29%29)
   - evaluation : TD Learning(Bootstrap), 샘플링으로 대체
   - improvement : 엡실론-탐욕정책(강제 최적이 아닌 행동 선택)
   - 문제점 : on-policy(안좋은 보상을 만날경우 큐함수 업데이트가 지속적 감소)
-- Q-Learning : Value Iteration에 sampling적용, Off-Policy(2개의 정책) -> s,a,r,s'
+  
+- **Q-Learning** : Value Iteration에 sampling적용, Off-Policy(2개의 정책) -> s,a,r,s'
   - tip) off-policy : behavior policy(샘플수집정책 : 업데이트X), target policy(에이전트의 정책:업데이트o)
   - 벨만최적방정식으로 큐함수 업데이트, off-policy(행동하는 정책, 학습하는 정책)
+    - ![](http://latex.codecogs.com/gif.latex?q%28s%2C%20a%29%20%3D%20q%28s%2C%20a%29%20&plus;%20%5Calpha%28r%20&plus;%20%5Cgamma%20%7B%5Ccolor%7BRed%7Dmax%20%7D_%7Ba%27%7D%20q%28s%27%2C%20a%27%29%20-%20q%28s%2Ca%29%29)
   - 행동정책의 종류 : 엡실론탐욕, 볼츠만 등..
-  
-
-
- 
+- SARSA vs Q-Learning
+  - on-policy TD Learning vs off-policy TD Learning
+  - Update target :
+    - ![](http://latex.codecogs.com/gif.latex?r%20&plus;%20%5Cgamma%20q%28s%27%2C%20a%27%29) vs ![](http://latex.codecogs.com/gif.latex?r%20&plus;%20%5Cgamma%20%7B%5Ccolor%7BRed%7Dmax%20%7D_%7Ba%27%7D%20q%28s%27%2C%20a%27%29)
