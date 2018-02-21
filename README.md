@@ -25,13 +25,21 @@
   - 큐함수에 대한 벨만최적방정식 : ![벨만최적방정식](http://latex.codecogs.com/gif.latex?q%5E*_%7B%5Cpi%20%7D%28s%2C%20a%29%20%3D%20E_%7B%5Cpi%7D%5BR_%7Bt&plus;1%7D%20&plus;%20%5Cgamma%20max_%7Ba%27%7D%20q%5E*_%7B%5Cpi%7D%28S_%7Bt&plus;1%7D%2C%20a%27%29%20%7C%20S_t%20%3D%20s%2C%20A_t%20%3D%20a%5D)
   
 ### 3. Dynamic Programming : Model-Base
- - 현재 optimal하지 않는 어떤 policy에 대해서 value function을 구하고(prediction) 현재의 value function을 토대로 더 나은 policy를 구하고 이와 같은 과정을 반복하여 optimal policy를 구하는 것
- - Policy Iteration(Bellman Expectation Equation) : 정책평가 + 정책발전, GPI
-   - evaluation : 정책 파이에 대한 참 가치함수를 반복적으로, 모든 상태에 대해 동시에(한번)
-   - improvement : 가치함수로 정책 파이를 업데이트, greedy
- - Value Iteration(Bellman Optimality Equation)
+- 큰 문제를 작은 문제로, 반복되는 값을 저장하면서 해결
+  - 큰 문제 : 최적가치함수 계산 ![](http://latex.codecogs.com/gif.latex?%5Cnu_0%20%5Crightarrow%20%5Cnu_1%20%5Crightarrow%20%5Cnu_2%20%5Crightarrow%20%5Cnu_3%20%5Crightarrow%20...%20%5Crightarrow%20%5Cnu%5E*)
+  - 작은 문제 : 현재의 가치함수를 더 좋은 가치함수로 업데이트 ![](http://latex.codecogs.com/gif.latex?%5Cnu_k%20%5Crightarrow%20%5Cnu_%7Bk&plus;1%7D)
+  - 벨만방적식으로 1-step계산으로 optimal계산
+- Value Iteration(Bellman Optimality Equation)
+  - 가치함수가 최적이라는 과정 : ![](http://latex.codecogs.com/gif.latex?%5Cnu_%7Bk&plus;1%7D%28s%29%20%5Cleftarrow%20max_a%5BR_s%5Ea%20&plus;%20%5Cgamma%20%5Cnu_k%28s%27%29%5D)
+  - 수렴한 가치함수에 greedy policy
+  - Q-Learning
+
+- Policy Iteration(Bellman Expectation Equation) : 정책평가 + 정책발전, GPI
+  - 벨만 기대방정식을 이용함. ![](http://latex.codecogs.com/gif.latex?%5Cnu_%7Bk&plus;1%7D%28s%29%20%5Cleftarrow%20%5CSigma_%7Ba%5Cin%20A%7D%20%5Cpi%28a%7Cs%29%5BR_s%5Ea%20&plus;%20%5Cgamma%20%5Cnu_k%28s%27%29%5D)
+  - evaluation : 벨만기대방성식을 이용한 참 가치함수를 계산, 정책 파이에 대한 참 가치함수를 반복적으로, 모든 상태에 대해 동시에(한번)
+  - improvement : 가치함수로 정책 파이를 업데이트, greedy policy
  
-### 4. Reinforcement(고전적) : Model-Free
+### 4. Reinforcement(고전적) : Model-Free(sampling)
 - Off-policy vs On-policy
 - SARSA : s,a,r,s',a' -> 큐함수 업뎃, 벨만기대방정식
   - evaluation : TD Learning(Bootstrap), 샘플링으로 대체
