@@ -1,8 +1,11 @@
-# Reinforcement_Learning : 
-- 목적 : accumulative future reward을 최대화하는 policy를 찾아내는 것
-## Index
+# Reinforcement Learning
+- 학습전 이해 : MP, DP, SP, MDP(https://norman3.github.io/rl/)
+- n-step, episode, sequence
+- deterministic policy vs stochastic policy
+
+## Keyword
 ### 1. Markov Decision Process
-- MDP : State, Action, State transition probability, Reward, Discount_Factor, Policy
+- MDP : State, Action, State transition probability, Reward, Discount_Factor
 - State Value Function(상태가치함수) : Q-function기대값이며 policy사용, 반환값(보상,감가율), 상태
 - Q-function(행동가치함수) : 특정 state에서 a라는 action을 취할 경우의 받을 return에 대한 기대값 
 
@@ -12,7 +15,7 @@
 - Bellman Optimality Equation : optimal value function사이의 관계식 ---> DynamicProgramming
   - Optimal value function : environment에서 취할 수 있는 가장 높은 값의 reward 총합(Deterministic)
   
-### 3. Dynamic Programming(full-width backup) : Model-Base
+### 3. Dynamic Programming : Model-Base
  - 현재 optimal하지 않는 어떤 policy에 대해서 value function을 구하고(prediction) 현재의 value function을 토대로 더 나은 policy를 구하고 이와 같은 과정을 반복하여 optimal policy를 구하는 것
  - Policy Iteration(Bellman Expectation Equation) : 정책평가 + 정책발전, GPI
    - evaluation : 정책 파이에 대한 참 가치함수를 반복적으로, 모든 상태에 대해 동시에(한번)
@@ -20,6 +23,7 @@
  - Value Iteration(Bellman Optimality Equation)
  
 ### 4. Reinforcement(고전적) : Model-Free
+- Off-policy vs On-policy
 - SARSA : s,a,r,s',a' -> 큐함수 업뎃, 벨만기대방정식
   - evaluation : TD Learning(Bootstrap), 샘플링으로 대체
   - improvement : 엡실론-탐욕정책(강제 최적이 아닌 행동 선택)
