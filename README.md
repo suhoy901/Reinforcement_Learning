@@ -58,3 +58,31 @@
   - on-policy TD Learning vs off-policy TD Learning
   - Update target :
     - ![](http://latex.codecogs.com/gif.latex?r%20&plus;%20%5Cgamma%20q%28s%27%2C%20a%27%29) vs ![](http://latex.codecogs.com/gif.latex?r%20&plus;%20%5Cgamma%20%7B%5Ccolor%7BRed%7Dmax%20%7D_%7Ba%27%7D%20q%28s%27%2C%20a%27%29)
+    
+### 5. Value Function Approximation
+- Value function Approximation
+  - Large state space, 비슷한 state는 비슷한 function의 output -> Generalization
+  - Supervised Learning기법을 사용하여 Generalization
+    - Function Approximation : Target function을 approximate하는 function을 찾음
+      - Target function을 아는 경우 : 수치해석학(numerical analysis)
+      - Target function을 모르는 경우 : regression, classification, ...
+    - MSE
+      - 큐함수의 결과값은 continous(regression), MSE, loss function(**TD-error**)
+      - MSE : ![](http://latex.codecogs.com/gif.latex?%28r%20&plus;%20%5Cgamma%20q_%7B%5Ctheta%7D%28s%27%2C%20a%27%29%20-%20q_%7B%5Ctheta%7D%28s%2C%20a%29%29%5E2)
+    - Gradient Descent
+      - MSE의 Gradient : ![](http://latex.codecogs.com/gif.latex?-2%28%7B%5Ccolor%7BRed%7D%20target%7D%20-%20q_%7B%5Ctheta%7D%28s%2C%20a%29%29%20%5Cnabla_%7B%5Ctheta%7D%20q_%7B%5Ctheta%7D%28s%2Ca%29)
+      - lr, target적용 : ![](http://latex.codecogs.com/gif.latex?-%5Calpha%28%7B%5Ccolor%7BRed%7D%20r%20&plus;%20%5Cgamma%20q_%7B%5Ctheta%7D%28s%27%2C%20a%27%29%7D%20-%20q_%7B%5Ctheta%7D%28s%2C%20a%29%29%20%5Cnabla_%7B%5Ctheta%7D%20q_%7B%5Ctheta%7D%28s%2Ca%29)
+    - 새로운 파라미터 : 기존parameter - (lr)(MSE의 graduent)
+  - SARSA with function appoximation
+    - ![](http://latex.codecogs.com/gif.latex?%5Ctheta%20%5Cleftarrow%20%5Ctheta%20-%5Calpha%28r%20&plus;%20%5Cgamma%20q_%7B%5Ctheta%7D%28s%27%2C%20a%27%29%20-%20q_%7B%5Ctheta%7D%28s%2C%20a%29%29%20%5Cnabla_%7B%5Ctheta%7D%20q_%7B%5Ctheta%7D%28s%2Ca%29)
+  - Q-Learning with function approximation
+    - ![](http://latex.codecogs.com/gif.latex?%5Ctheta%20%5Cleftarrow%20%5Ctheta%20-%5Calpha%28r%20&plus;%20%5Cgamma%20max_%7Ba%27%7D%20q_%7B%5Ctheta%7D%28s%27%2C%20a%27%29%20-%20q_%7B%5Ctheta%7D%28s%2C%20a%29%29%20%5Cnabla_%7B%5Ctheta%7D%20q_%7B%5Ctheta%7D%28s%2Ca%29)
+  - function approximation 종류(Linear, Nonlinear)
+    - linear
+      - 큐함수의 gradient
+        - ![](http://latex.codecogs.com/gif.latex?%5Cnabla_%7Bw%7D%20q_%7Bw%7D%28s%2Ca%29%20%3D%20%5Cnabla_%7Bw%7D%28X%28s%29W%29%20%3D%20X%28s%29)
+      - Q-Learning with function approximation
+        - ![](http://latex.codecogs.com/gif.latex?w%20%5Cleftarrow%20w%20-%5Calpha%28r%20&plus;%20%5Cgamma%20max_%7Ba%27%7D%20q_%7Bw%7D%28s%27%2C%20a%27%29%20-%20q_%7Bw%7D%28s%2C%20a%29%29%20%5Cnabla_%7B%5Ctheta%7D%20X%28s%29)
+    - nonlinear(Neural net)
+      - MSE error에 대한 gradient : ![](http://latex.codecogs.com/gif.latex?%5Cnabla_%7B%5Ctheta%7D%28r%20&plus;%20%5Cgamma%20max_%7Ba%27%7D%20q_%7B%5Ctheta%7D%20%28s%27%2Ca%27%29%20-%20q_%7B%5Ctheta%7D%28s%2Ca%29%29%5E2)
+      
