@@ -105,8 +105,9 @@
     - DQN update : MSE error를 backpropagation
       - ![](http://latex.codecogs.com/gif.latex?MSE%20error%20%3A%20%28%7B%5Ccolor%7BRed%7D%20r%20&plus;%20%5Cgamma%20max_%7Ba%27%7D%20q_%7B%5Ctheta%5E-%7D%28s%27%2C%20a%27%29%7D%20-%20q%28s%2C%20a%29%29)
   - Target Q-network
-     - Target network
-      
+     - Target network ![](http://latex.codecogs.com/gif.latex?%5Ctheta%5E-)의 사용 : update의 target이 계속 변하는 문제를 개선
+     - 일정주기마다 현재의 network ![](http://latex.codecogs.com/gif.latex?%5Ctheta%5E-)를 ![](http://latex.codecogs.com/gif.latex?%5Ctheta)로 업데이트
+       
       
 - DQN 학습과정
   - 탐험
@@ -123,7 +124,30 @@
       - Target : ![](http://latex.codecogs.com/gif.latex?r%20&plus;%20%5Cgamma%20max_%7Ba%27%7D%20q_%7B%5Ctheta%7D%28s%27%2C%20a%27%29)
       - Prediction : ![](http://latex.codecogs.com/gif.latex?q_%7B%5Ctheta%7D%28s%2C%20a%29)
   - 일정 주기마다 Target network 업데이트
-  
+
+- DQN알고리즘 세부내용
+  - Image preprocessing
+    - Gray-Scale(210,160,1) -> (210,160,1)
+    - Resize(210, 150,1) -> (84,84,1)
+  - 4 images 1 history
+    - 이미지한장에는 속도 정보 포함X
+    - 연속된 4개의 image를 하나의 history로 네트워크에 input
+    - 학습에 4번의 image중에 1개만 사용함(frame skip)
+    - Frame skip한 상황에서 image를 하나의 history로
+  - 30 no-op
+    - 항상 같은 상태에서 시작하므로 초반에 local optimum으로 수렴할 확률이 높음
+    - 0에서 30의 time-step 중에 랜덤으로 하나를 선택한 후 아무것도 안함
+  - Reward clip
+    - 게임마다 다른 reward를 통일
+  - Huber loss
+    - -1과 1사이는 quadratic, 다른 곳은 linear
+
+- DQN
+ 1. 환경초기화, 30 no-op
+ 2. 
+
+
+
 
 ### 7. Faster DQN
 
