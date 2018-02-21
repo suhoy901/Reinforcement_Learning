@@ -17,10 +17,12 @@
 
 ### 2. Bellman Equation
 - Bellman Expectation Equation(벨만기대방정식) : 특정 정책에 대한 가치함수<br>
- - 가치함수에 대한 벨만기대방정식 : ![벨만기대방정식](http://latex.codecogs.com/gif.latex?%5Cnu_%7B%5Cpi%20%7D%28s%2C%20a%29%20%3D%20E_%7B%5Cpi%7D%5BR_%7Bt&plus;1%7D%20&plus;%20%5Cgamma%20%5Cnu_%7B%5Cpi%7D%28S_%7Bt&plus;1%7D%29%20%7C%20S_t%20%3D%20s%5D)
- - 큐함수에 대한 벨만기대방정식 : ![벨만기대방정식](http://latex.codecogs.com/gif.latex?q_%7B%5Cpi%20%7D%28s%2C%20a%29%20%3D%20E_%7B%5Cpi%7D%5BR_%7Bt&plus;1%7D%20&plus;%20%5Cgamma%20q_%7B%5Cpi%7D%28S_%7Bt&plus;1%7D%2C%20A_%7Bt&plus;1%7D%29%20%7C%20S_t%20%3D%20s%2C%20A_t%20%3D%20a%5D)
+  - 가치함수에 대한 벨만기대방정식 : ![벨만기대방정식](http://latex.codecogs.com/gif.latex?%5Cnu_%7B%5Cpi%20%7D%28s%2C%20a%29%20%3D%20E_%7B%5Cpi%7D%5BR_%7Bt&plus;1%7D%20&plus;%20%5Cgamma%20%5Cnu_%7B%5Cpi%7D%28S_%7Bt&plus;1%7D%29%20%7C%20S_t%20%3D%20s%5D)
+  - 큐함수에 대한 벨만기대방정식 : ![벨만기대방정식](http://latex.codecogs.com/gif.latex?q_%7B%5Cpi%20%7D%28s%2C%20a%29%20%3D%20E_%7B%5Cpi%7D%5BR_%7Bt&plus;1%7D%20&plus;%20%5Cgamma%20q_%7B%5Cpi%7D%28S_%7Bt&plus;1%7D%2C%20A_%7Bt&plus;1%7D%29%20%7C%20S_t%20%3D%20s%2C%20A_t%20%3D%20a%5D)
 - Bellman Optimality Equation : optimal value function사이의 관계식
   - Optimal value function
+  - 가치함수에 대한 벨만최적방정식 : ![벨만최적방정식](http://latex.codecogs.com/gif.latex?%5Cnu%5E*_%7B%5Cpi%20%7D%28s%29%20%3D%20max_a%20E_%7B%5Cpi%7D%5BR_%7Bt&plus;1%7D%20&plus;%20%5Cgamma%20%5Cnu%5E%7B*%7D%28S_%7Bt&plus;1%7D%29%20%7C%20S_t%20%3D%20s%2C%20A_t%20%3D%20a%5D)
+  - 큐함수에 대한 벨만최적방정식 : ![벨만최적방정식](http://latex.codecogs.com/gif.latex?q%5E*_%7B%5Cpi%20%7D%28s%2C%20a%29%20%3D%20E_%7B%5Cpi%7D%5BR_%7Bt&plus;1%7D%20&plus;%20%5Cgamma%20max_%7Ba%27%7D%20q%5E*_%7B%5Cpi%7D%28S_%7Bt&plus;1%7D%2C%20a%27%29%20%7C%20S_t%20%3D%20s%2C%20A_t%20%3D%20a%5D)
   
 ### 3. Dynamic Programming : Model-Base
  - 현재 optimal하지 않는 어떤 policy에 대해서 value function을 구하고(prediction) 현재의 value function을 토대로 더 나은 policy를 구하고 이와 같은 과정을 반복하여 optimal policy를 구하는 것
