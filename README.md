@@ -89,7 +89,26 @@
   - Online update vs offline update
     - Online : 에이전트가 환경과 상호작용하고 있는 도중에 update
     - Offline : 에피소드가 끝난 후에 update
-    
+
+## 보강내용
+### Value-based RL vs Policy-based RL
+- Value-based RL
+  - 가치함수를 통해 행동을 선택
+  - 가치함수에 function approximator적용
+  - 업데이트 대상이 가치함수(큐함수)
+  - 각 행동이 얼마나 좋은지 큐함수를 통해 측정
+  - 큐함수를 보고 행동을 선택(엡실론그리디)
+  - SARSA, Q-LEARNING, DQN,...
+  
+- Policy-based RL
+  - 정책에 따라 행동을 선택
+  - 정책에 function approximator적용
+  - 업데이트 대상이 정책
+  - approximate된 정책의 input은 상태 벡터, output은 각 행동을 할 확률
+  - 확률적으로 행동을 선택(stochastic policy)
+  - REINFORCE, Actor-Critic, A3C,...
+
+
 ### 6. DQN(Deep Q-Network)
 **BreakOut_v4**
 **Cartpole_DQN2015**
@@ -144,10 +163,56 @@
 
 - DQN
  1. 환경초기화, 30 no-op
- 2. 
-
-
-
-
+ 2. History에 따라 행동을 선택(엡실론그리디), 엡실론의 값을 decay
+ 3. 선택한 행동으로 1 time-step환경에서 진행, 다음상태, 보상을 받음
+ 4. 샘플을 형성(h,a,r,h'), reply memory에 append
+ 5. 50000스텝 이상일 경우 reply memory에서 mini-batch
+  - ![](http://latex.codecogs.com/gif.latex?MSE%20error%20%3A%20%28r%20&plus;%20%5Cgamma%20max_%7Ba%27%7D%20q_%7B%5Ctheta%7D%20-%20%28s%27%2C%20a%27%29%20-%20q_%7B%5Ctheta%7D%28s%2C%20a%29%5E2%20%29)
+ 6. 10000스텝마다 target network업데이트
+ 
 ### 7. Faster DQN
+차후에 내용 보강
 
+
+### 8. REINFORCE
+- Policy- based RL학습방법
+  - 정책에 따라 행동
+  - 행동한 결과에 따라 정책을 평가
+    - 기준 : **목적함수(Objectvive function/performance measure)** 
+      - ![](https://latex.codecogs.com/gif.latex?J%28%5Ctheta%29%20%3D%20%5Cnu_%7B%5Cpi_%7B%5Ctheta%7D%7D%28s_0%29%20%3D%20E_%7B%5Cpi_%7B%5Ctheta%7D%7D%5B%5CSigma_%7Bt%3D0%7D%5E%7BT-1%7D%20%5Cgamma%20r_%7Bt&plus;1%7D%20%7C%20S_0%20%3D%20s_0%20%5D)
+    - 정책망 자체를 업데이트(policy gradient)
+  - 평가한 결과에 따라 정책 업뎃
+    - **Policy gradient로 정책을 업데이트** : ![](https://latex.codecogs.com/gif.latex?%5Ctheta%27%20%3D%20%5Ctheta%20&plus;%20%5Calpha%20%7B%5Ccolor%7BRed%7D%5Cnabla_%7B%5Ctheta%7D%20J%28%5Ctheta%29%20%7D)
+    - ![](https://latex.codecogs.com/gif.latex?%5Ctheta%27%20%3D%20%5Ctheta%20&plus;%20%5Calpha%20%7B%5Ccolor%7BRed%7D%5Cnabla_%7B%5Ctheta%7D%20J%28%5Ctheta%29%20%7D)을 알아내는 접근방법 2가지
+      - REINFORCE : return값
+      - Actor-Critic : 가치함수
+- Policy-Grdient계산
+  - 어떤 상태에 에이전트가 있었는지
+    - State distribution가 세타값에 따라 달라진다
+  - 각 상태에서 에이전트가 어떤 행동을 선택했는가
+    - 정책에 따라 확률적으로 행동을 선택함 -> 세타값에 따라 달라진다
+- Policy Gradient Theorem
+  - ![](https://latex.codecogs.com/gif.latex?%5Cnabla%20J%28%5Ctheta%29%20%3D%20%5Csum_s%20d_%7B%5Cpi_%7B%5Ctheta%7D%7D%28s%29%20%5Csum_a%20%5Cnabla_%7B%5Ctheta%7D%20%5Cpi_%7B%5Ctheta%7D%28a%7Cs%29q_%7B%5Cpi_%7B%5Ctheta%7D%7D%28s%2C%20a%29)
+  - ![](https://latex.codecogs.com/gif.latex?%5Cnabla_%7B%5Ctheta%7DJ%28%5Ctheta%29%20%3D%20%5Cnabla_%7B%5Ctheta%7D%20log%20%5Cpi_%7B%5Ctheta%7D%28a%7Cs%29q_%7B%5Cpi_%7B%5Ctheta%7D%7D%28s%2C%20a%29)
+  - ![](https://latex.codecogs.com/gif.latex?q_%7B%5Cpi_%7B%5Ctheta%7D%7D%28s%2C%20a%29)를 구하는 방법
+    - return값을 사용하는 방법 : REINFORCE
+    - critic network를 사용하는 방법 : Actor-Critic
+- REINFORCE 알고리즘 순서
+  - 한 에피소드를 policy-network에 따라 실행
+  - 에피소드를 기록
+  - 에피소드가 끝난 뒤 방문한 상태들에 대한 리턴값을 계산
+  - ![](https://latex.codecogs.com/gif.latex?%5CSigma_%7Bt%3D0%7D%5E%7BT-1%7D%20%5Cnabla_%7B%5Ctheta%7D%20log%20%5Cpi_%7B%5Ctheta%7D%28A_t%7C%20S_t%29G_t)를 계산하여 정책망을 업데이트함
+  - 앞의 4단계를 반복함
+- baseline를 사용한 REINFORCE
+  - 원인 : Variance이 커지는 문제. 각각의 에피소드가 끝날때가지 기다리기 때문임!!!! 
+  - ![](https://latex.codecogs.com/gif.latex?%5Cnable_%7B%5Ctheta%7D%20J%28%5Ctheta%29%20%3D%20%5Csum_s%20d_%7B%5Cpi_%7B%5Ctheta%7D%7D%28s%29%20%5Csum_a%20%5Cnabla_%7B%5Ctheta%7D%20%5Cpi_%7B%5Ctheta%7D%28a%7Cs%29%28q_%7B%5Cpi_%7B%5Ctheta%7D%7D%28s%2C%20a%29%20-%20b%28S_t%29%29)
+  - 모형에 적용
+  - 가치함수를 베이스라인으로 적용함(가치함수 네트워크를 설정함)
+  - 가치함수 네트워크를 업데이트함(TD-error)
+
+### 9. Actor-Critic
+- Actor와 Critic
+  - Actor
+    - 정책을 근사하는 세타값
+    - 업데이트 수식
+      
