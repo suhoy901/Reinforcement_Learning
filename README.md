@@ -67,11 +67,21 @@
  
 ### 4. Reinforcement(고전적) : Model-Free(sampling)
 - Off-policy vs On-policy
-- **SARSA** : s,a,r,s',a' -> 큐함수 업뎃, 벨만기대방정식
-  - evaluation(Prediction) : TD Learning(Bootstrap), 샘플링으로 대체
+- **SARSA** : s,a,r,s',a' : Policy Iteration에 sampling적용
+  - policy Iteration vs SARSA
+    - 정책평가 -> TD-Learning
+    - 정책발전 -> 엡실론 탐욕
+  - 정책평가 : TD Learning(Bootstrap)
+    1. 에이전트가 현재 상태 S_t=s에서 행동 A_t=a 선택하고 S,A
+    2. 선택한 행동으로 환경에서 1-step진행
+    3. 다음 상태 S_(t+1)=s'와 보상 R_(t+1)을 환경으로부터 받음 R
+    4. 다음 상태 S_(t+1)=s'에서 행동 S', A'
     - ![](http://latex.codecogs.com/gif.latex?q%28s%2C%20a%29%20%3D%20q%28s%2C%20a%29%20&plus;%20%5Calpha%28r%20&plus;%20%5Cgamma%20q%28s%27%2C%20a%27%29%20-%20q%28s%2Ca%29%29) 
-  - improvement(Control) : 엡실론-탐욕정책(강제 최적이 아닌 행동 선택)
-  - 문제점 : on-policy(안좋은 보상을 만날경우 큐함수 업데이트가 지속적 감소)
+    
+  - 정책발전 improvement(Control) => 엡실론 탐욕 : 엡실론의 확률로 최적이 아닌 행동을 선택
+    - 엡실론 탐욕정책으로 샘플을 획득함
+  - 문제점 : on-policy(안좋은 보상을 만날경우 큐함수 업데이트가 지속적 감소) 
+  
   
 - **Q-Learning** : Value Iteration에 sampling적용, Off-Policy(2개의 정책) -> s,a,r,s'
   - tip) off-policy : behavior policy(샘플수집정책 : 업데이트X), target policy(에이전트의 정책:업데이트o)
@@ -90,6 +100,7 @@
   - on-policy TD Learning vs off-policy TD Learning
   - Update target :
     - ![](http://latex.codecogs.com/gif.latex?r%20&plus;%20%5Cgamma%20q%28s%27%2C%20a%27%29) vs ![](http://latex.codecogs.com/gif.latex?r%20&plus;%20%5Cgamma%20%7B%5Ccolor%7BRed%7Dmax%20%7D_%7Ba%27%7D%20q%28s%27%2C%20a%27%29)
+    
     
     
 ### 5. Value Function Approximation
