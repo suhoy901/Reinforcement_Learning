@@ -3,8 +3,8 @@
 - n-step, episode, sequence
 - deterministic policy vs stochastic policy
 - policy 2가지 형태
-  - 정책(상태) -> 명시적(explicit) -> Value Iteration
-  - 선택(가치함수(상태)) -> 내재적(implicit) -> Policy Iteration
+  - 정책(상태) -> 명시적(explicit) -> Policy Iteration
+  - 선택(가치함수(상태)) -> 내재적(implicit) -> Value Iteration
 ----
 
 ## 내용
