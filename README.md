@@ -5,15 +5,16 @@
 - policy 2가지 형태
   - 정책(상태) -> 명시적(explicit) -> Value Iteration
   - 선택(가치함수(상태)) -> 내재적(implicit) -> Policy Iteration
+----
 
-
+## 내용
 ### A. DynamicProgramming
 - value_iteration
   - [gridworld예제 : value_iteration](https://github.com/suhoy901/Reinforcement_Learning/blob/master/01.gridworld_value_iteration/value_iteration.py)
 - monte-carlo
   - [gridworld예제 : Monte-Carlo](https://github.com/suhoy901/Reinforcement_Learning/blob/master/02.monte-carlo/environment.py)
 
-### A. 고전적 강화학습
+### B. 고전적 강화학습
 - sarsa
   - [gridworld예제 : SARSA](https://github.com/suhoy901/Reinforcement_Learning/blob/master/03.gridworld_sarsa/sarsa_agent.py)
   - [maze예제 : SARSA](https://github.com/suhoy901/Reinforcement_Learning/blob/master/05.maze_sarsa/sarsa_basic.py)
@@ -26,7 +27,7 @@
   - [maze예제 : Q-Learning](https://github.com/suhoy901/Reinforcement_Learning/blob/master/06.maze_q_learning/q_learning_basic.py)
   - [maze예제 : Q-Learning_both_decay](https://github.com/suhoy901/Reinforcement_Learning/blob/master/06.maze_q_learning/q_learning_both_decay.py)
 
-### B. 수정
+### C. 수정
 
 
 
