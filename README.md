@@ -76,13 +76,22 @@
   
 - **Q-Learning** : Value Iteration에 sampling적용, Off-Policy(2개의 정책) -> s,a,r,s'
   - tip) off-policy : behavior policy(샘플수집정책 : 업데이트X), target policy(에이전트의 정책:업데이트o)
-  - 벨만최적방정식으로 큐함수 업데이트, off-policy(행동하는 정책, 학습하는 정책)
+  - 벨만최적방정식으로 큐함수 업데이트, off-policy
     - ![](http://latex.codecogs.com/gif.latex?q%28s%2C%20a%29%20%3D%20q%28s%2C%20a%29%20&plus;%20%5Calpha%28r%20&plus;%20%5Cgamma%20%7B%5Ccolor%7BRed%7Dmax%20%7D_%7Ba%27%7D%20q%28s%27%2C%20a%27%29%20-%20q%28s%2Ca%29%29)
-  - 행동정책의 종류 : 엡실론탐욕, 볼츠만 등..
+  - Off-policy Learning
+    - 행동하는 정책(exploration) : 엡실론탐욕, 볼츠만 등..
+    - 학습하는 정책(exploitation) : 탐욕정책
+  - 요약 : Q-Learning을 통한 학습 과정
+    1. 상태 s에서 행동 a는 행동정책(엡실론 탐욕)으로 선택
+    2. 환경으로부터 다음 상태 s'와 보상 r을 받음
+    3. 벨만 최적방정식을 통해 q(s,a)를 업데이트
+      - 학습정책 : 탐욕정책
+      - ![](http://latex.codecogs.com/gif.latex?q%28s%2C%20a%29%20%3D%20q%28s%2C%20a%29%20&plus;%20%5Calpha%28r%20&plus;%20%5Cgamma%20%7B%5Ccolor%7BRed%7Dmax%20%7D_%7Ba%27%7D%20q%28s%27%2C%20a%27%29%20-%20q%28s%2Ca%29%29)
 - SARSA vs Q-Learning
   - on-policy TD Learning vs off-policy TD Learning
   - Update target :
     - ![](http://latex.codecogs.com/gif.latex?r%20&plus;%20%5Cgamma%20q%28s%27%2C%20a%27%29) vs ![](http://latex.codecogs.com/gif.latex?r%20&plus;%20%5Cgamma%20%7B%5Ccolor%7BRed%7Dmax%20%7D_%7Ba%27%7D%20q%28s%27%2C%20a%27%29)
+    
     
 ### 5. Value Function Approximation
 - Value function Approximation
