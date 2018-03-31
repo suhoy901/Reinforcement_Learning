@@ -27,7 +27,12 @@
   - [maze예제 : Q-Learning](https://github.com/suhoy901/Reinforcement_Learning/blob/master/06.maze_q_learning/q_learning_basic.py)
   - [maze예제 : Q-Learning_both_decay](https://github.com/suhoy901/Reinforcement_Learning/blob/master/06.maze_q_learning/q_learning_both_decay.py)
 
-### C. 수정
+### C. (modern?) 강화학습
+- DQN(value_based)
+
+- REINFORCE(policy_based)
+
+- Actor-Critic(policy_based)
 
 
 
