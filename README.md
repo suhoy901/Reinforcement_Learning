@@ -28,7 +28,12 @@
   - [maze예제 : Q-Learning_both_decay](https://github.com/suhoy901/Reinforcement_Learning/blob/master/06.maze_q_learning/q_learning_both_decay.py)
 
 ### C. (modern?) 강화학습
+- Function Approximation
+  - [gridword예제 : Linear_SARSA](https://github.com/suhoy901/Reinforcement_Learning/blob/master/08.gridworld_Non_linear_approximation/non_linear_agent.py)
+  - [gridword예제 : Non-Linear_SARSA](https://github.com/suhoy901/Reinforcement_Learning/blob/master/08.gridworld_Non_linear_approximation/non_linear_agent.py)
+
 - DQN(value_based)
+
 
 - REINFORCE(policy_based)
 
