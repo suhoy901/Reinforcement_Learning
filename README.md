@@ -33,9 +33,13 @@
   - [gridword예제 : Non-Linear_SARSA](https://github.com/suhoy901/Reinforcement_Learning/blob/master/08.gridworld_Non_linear_approximation/non_linear_agent.py)
 
 - DQN(value_based)
-
-
+  - [gridword예제 : DQN](https://github.com/suhoy901/Reinforcement_Learning/blob/master/09.gridworld_DQN/dqn_agent.py)
+  - [cartpole예제 : DQN](https://github.com/suhoy901/Reinforcement_Learning/blob/master/10.cartpole_DQN/cartpole_dqn.py)
+  - [driving예제 : DQN](https://github.com/suhoy901/Reinforcement_Learning/blob/master/13.driving_dqn/driving_dqn.py)
+  - [cartpole예제 : DQN_bayesian](https://github.com/suhoy901/Reinforcement_Learning/blob/master/10.cartpole_DQN/cartpole_dqn_bayesian.py)
+  - [cartpole예제 : DQN_boltzmann](https://github.com/suhoy901/Reinforcement_Learning/blob/master/10.cartpole_DQN/cartpole_dqn_boltzmann.py)
 - REINFORCE(policy_based)
+  - [cartpole예제 : REINFORCE](https://github.com/suhoy901/Reinforcement_Learning/blob/master/11.cartpole_REINFORCE/cartpole_reinforce.py)
 
 - Actor-Critic(policy_based)
 
