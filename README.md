@@ -269,8 +269,3 @@
   - 가치함수 네트워크를 업데이트함(TD-error)
 
 ### 9. Actor-Critic
-- Actor와 Critic
-  - Actor
-    - 정책을 근사하는 세타값
-    - 업데이트 수식
-      
